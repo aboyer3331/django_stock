@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+
+# pk_2e2d20e9a6f3459eab9e644dfaa0c62d
+
+{% block content %}
+
+{% if ticker %}
+	{{ticker}}
+{% endif %}
+{% if api %}
+	{%  if api == "error..." %}
+		There was a problem with your ticker symbol, please try again...
+	{% else %}
+		<h1>{{ api.companyName }} </h1>
+		Last Price: <h1>{{ api.latestPrice }} </h1>
+		Previous: <h1>{{ api.previousClose }} </h1>
+		Market Cap: <h1>{{ api.marketCap }} </h1>
+		YTD Change: <h1>{{ api.ytdChange }} </h1>
+
+		{% for key, value in api.items %}
+			{{ key }}: {{ value }}<br/>
+		{% endfor %}
+
+		{{api}}
+	{% endif %}
+{% endif %}
+
+
+
+
+
+{% endblock %}
